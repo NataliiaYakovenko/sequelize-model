@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Phone } = require("../models/index");
 
 module.exports.createPhone = async (req, res, next) => {
@@ -19,7 +20,7 @@ module.exports.getAllPhones = async (req, res, next) => {
     const resultArray = await Phone.findAll({
       limit,
       offset,
-      order: [["productionYear","ASC"]],
+      order: [["productionYear", "ASC"]],
     });
     return res.status(200).send(resultArray);
   } catch (error) {
@@ -27,4 +28,20 @@ module.exports.getAllPhones = async (req, res, next) => {
   }
 };
 
+module.exports.getAllPhonesYear = async (req, res, next) => {
+  try {
+    const { year } = req.query;
+    const startYear = `${year}-01-01`;
+    const endYear = `${year}-12-31`;
 
+    const resultArray = await Phone.findAll({
+    where: { productionYear: {
+    [Op.between]: [startYear, endYear]
+  } },
+    });
+
+    return res.status(200).send(resultArray);
+  } catch (error) {
+    next(error);
+  }
+};
