@@ -65,3 +65,20 @@ module.exports.getAllPhonesMore2020 = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.updatePhoneByPk = async (req, res, next) => {
+  try {
+    const {
+      params: { id },
+      body,
+    } = req;
+    const updatedPhonesArray = await Phone.update(body, {
+      where: { id: id },
+      returning: true,
+    });
+
+    return res.status(200).send(updatedPhonesArray);
+  } catch (error) {
+    next(error);
+  }
+};
