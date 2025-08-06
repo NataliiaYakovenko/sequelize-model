@@ -82,3 +82,22 @@ module.exports.updatePhoneByPk = async (req, res, next) => {
     next(error);
   }
 };
+
+
+module.exports.updatePhones2021 = async (req, res, next) => {
+  try {
+    const {params: { id },body} = req;
+    const year = 2020;
+    const updatedPhonesArray = await Phone.update(body, {
+      where: {
+        productionYear: {
+          [Op.gt]: `${year}-12-31`,
+        },
+      },
+    });
+
+    return res.status(200).send(updatedPhonesArray);
+  } catch (error) {
+    next(error);
+  }
+};

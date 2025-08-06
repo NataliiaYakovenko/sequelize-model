@@ -13,4 +13,6 @@ router.get("/phones/more/:year", PhoneController.getAllPhonesMore2020);
 
 router.put("/phone/:id", PhoneController.updatePhoneByPk);
 
+router.put("/phones/year", PhoneController.updatePhones2021);
+
 module.exports = router;
