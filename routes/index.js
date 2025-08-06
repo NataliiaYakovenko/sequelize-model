@@ -17,4 +17,6 @@ router.put("/phones/year", PhoneController.updatePhones2021);
 
 router.delete("/phone/:id", PhoneController.deletePhoneByPk);
 
+router.delete("/phones/year", PhoneController.deletePhonesByYear);
+
 module.exports = router;

@@ -121,3 +121,26 @@ module.exports.deletePhoneByPk = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.deletePhonesByYear = async (req, res, next) => {
+  try {
+    const {params: { id }} = req;
+    const year = 2010;
+    const startYear = `${year}-01-01`;
+    const endYear = `${year}-12-31`;
+
+    const rowsCount = await Phone.destroy({ where: {
+        productionYear: {
+          [Op.between]: [startYear, endYear],
+        },
+      }});
+
+    if (rowsCount > 0) {
+      return res.status(200).send("Successful delete");
+    } else {
+      return res.status(204).end();
+    }
+  } catch (error) {
+    next(error);
+  }
+};
