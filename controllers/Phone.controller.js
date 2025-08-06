@@ -87,11 +87,14 @@ module.exports.updatePhoneByPk = async (req, res, next) => {
 module.exports.updatePhones2021 = async (req, res, next) => {
   try {
     const {params: { id },body} = req;
-    const year = 2020;
+    const year = 2021;
+    const startYear = `${year}-01-01`;
+    const endYear = `${year}-12-31`;
+
     const updatedPhonesArray = await Phone.update(body, {
       where: {
         productionYear: {
-          [Op.gt]: `${year}-12-31`,
+          [Op.between]: [startYear, endYear],
         },
       },
     });
