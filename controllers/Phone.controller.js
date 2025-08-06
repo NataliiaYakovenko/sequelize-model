@@ -104,3 +104,20 @@ module.exports.updatePhones2021 = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.deletePhoneByPk = async (req, res, next) => {
+  try {
+    const {
+      params: { id },
+    } = req;
+    const rowsCount = await Phone.destroy({ where: { id: id } });
+
+    if (rowsCount > 0) {
+      return res.status(200).send("Successful delete");
+    } else {
+      return res.status(204).end();
+    }
+  } catch (error) {
+    next(error);
+  }
+};
