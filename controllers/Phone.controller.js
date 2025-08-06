@@ -35,9 +35,29 @@ module.exports.getAllPhonesYear = async (req, res, next) => {
     const endYear = `${year}-12-31`;
 
     const resultArray = await Phone.findAll({
-    where: { productionYear: {
-    [Op.between]: [startYear, endYear]
-  } },
+      where: {
+        productionYear: {
+          [Op.between]: [startYear, endYear],
+        },
+      },
+    });
+
+    return res.status(200).send(resultArray);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.getAllPhonesMore2020 = async (req, res, next) => {
+  try {
+    const year = 2020;
+
+    const resultArray = await Phone.findAll({
+      where: {
+        productionYear: {
+          [Op.gt]: `${year}-12-31`,
+        },
+      },
     });
 
     return res.status(200).send(resultArray);

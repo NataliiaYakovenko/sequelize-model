@@ -7,4 +7,8 @@ router.post("/phone", PhoneController.createPhone);
 
 router.get("/phones", PhoneController.getAllPhones);
 
+router.get("/phones/year", PhoneController.getAllPhonesYear);
+
+router.get("/phones/more/:year", PhoneController.getAllPhonesMore2020);
+
 module.exports = router;
