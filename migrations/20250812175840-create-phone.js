@@ -9,12 +9,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      modelId: {
+        field: "model_id",
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: "models",
+            key: "id",
+          },
+        },
+      },
       brand: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
         allowNull: false,
       },
       model: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
         allowNull: false,
       },
       productionYear: {
@@ -28,7 +39,7 @@ module.exports = {
         allowNull: false,
       },
       processor: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         allowNull: false,
       },
       screenSize: {
@@ -39,6 +50,7 @@ module.exports = {
       isNfc: {
         field: "is_nfc",
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
