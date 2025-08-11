@@ -11,6 +11,16 @@ module.exports.createPhone = async (req, res, next) => {
   }
 };
 
+module.exports.createPhoneByModel = async (req, res, next) => {
+  try {
+    const { body } = req;
+    const createdPhone = await Phone.create(body);
+    return res.status(201).send(createdPhone);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports.getPhones = async (req, res, next) => {
   try {
     const resultArray = await Phone.findAll();

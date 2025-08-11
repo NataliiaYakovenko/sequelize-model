@@ -6,13 +6,15 @@ const router = Router();
 
 router.post("/phone", PhoneController.createPhone);
 
+router.post("/phone/:modelId", PhoneController.createPhoneByModel);
+
 router.get("/phones", PhoneController.getAllPhones);
 
 router.get("/phones/all", PhoneController.getPhones);
 
 router.get("/phone/:id", PhoneController.getPhoneByPk);
 
-router.get('/phones/:modelId',PhoneController.getPhonesByModel)
+router.get("/phones/:modelId", PhoneController.getPhonesByModel);
 
 router.get("/phones/year", PhoneController.getAllPhonesYear);
 
