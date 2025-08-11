@@ -50,6 +50,21 @@ module.exports.getAllPhones = async (req, res, next) => {
   }
 };
 
+module.exports.getPhonesByModel = async (req, res, next) => {
+  try {
+    const { modelId } = req.params;
+    const resultArray = await Phone.findAll({
+      where: {
+        modelId: modelId,
+      },
+    });
+
+    return res.status(200).send(resultArray);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports.getAllPhonesYear = async (req, res, next) => {
   try {
     const { year } = req.query;
