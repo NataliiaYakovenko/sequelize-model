@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const PhoneController = require("../controllers/Phone.controller");
+const ModelPhController = require("../controllers/ModelPh.controller");
 
 const router = Router();
 
@@ -18,5 +19,7 @@ router.put("/phones/year", PhoneController.updatePhones2021);
 router.delete("/phone/:id", PhoneController.deletePhoneByPk);
 
 router.delete("/phones/year", PhoneController.deletePhonesByYear);
+
+router.post("/modelPh", ModelPhController.createModelPh);
 
 module.exports = router;

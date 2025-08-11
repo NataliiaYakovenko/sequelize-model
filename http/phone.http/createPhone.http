@@ -2,6 +2,7 @@ POST http://localhost:5000/api/phone HTTP/1.1
  Content-Type: application/json
 
   {
+    "modelId": 1,
     "brand": "HTC",
     "model": "Desire HD",
     "productionYear": "2010-10-15",
