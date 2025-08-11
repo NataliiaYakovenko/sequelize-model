@@ -2,14 +2,14 @@ POST http://localhost:5000/api/phone HTTP/1.1
  Content-Type: application/json
 
   {
-    "modelId": 1,
-    "brand": "HTC",
-    "model": "Desire HD",
-    "productionYear": "2010-10-15",
-    "ramSize": 1,
-    "processor": "Qualcomm Snapdragon",
-    "screenSize": 4.3,
-    "isNfc": false
+    "modelId": 4,
+    "brand": "OnePlus",
+    "model": "Nord CE",
+    "productionYear": "2021-06-10",
+    "ramSize": 6,
+    "processor": "Qualcomm Snapdragon 750G",
+    "screenSize": 6.43,
+    "isNfc": true
   }
 
 
