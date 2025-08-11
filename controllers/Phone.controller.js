@@ -20,6 +20,19 @@ module.exports.getPhones = async (req, res, next) => {
   }
 };
 
+module.exports.getPhoneByPk = async (req, res, next) => {
+  try {
+    const {
+      params: { id },
+    } = req;
+    const resultArray = await Phone.findByPk(id);
+
+    return res.status(200).send(resultArray);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports.getAllPhones = async (req, res, next) => {
   try {
     const { page = 1, results = 10 } = req.query;
@@ -92,10 +105,12 @@ module.exports.updatePhoneByPk = async (req, res, next) => {
   }
 };
 
-
 module.exports.updatePhones2021 = async (req, res, next) => {
   try {
-    const {params: { id },body} = req;
+    const {
+      params: { id },
+      body,
+    } = req;
     const year = 2021;
     const startYear = `${year}-01-01`;
     const endYear = `${year}-12-31`;
@@ -133,16 +148,20 @@ module.exports.deletePhoneByPk = async (req, res, next) => {
 
 module.exports.deletePhonesByYear = async (req, res, next) => {
   try {
-    const {params: { id }} = req;
+    const {
+      params: { id },
+    } = req;
     const year = 2010;
     const startYear = `${year}-01-01`;
     const endYear = `${year}-12-31`;
 
-    const rowsCount = await Phone.destroy({ where: {
+    const rowsCount = await Phone.destroy({
+      where: {
         productionYear: {
           [Op.between]: [startYear, endYear],
         },
-      }});
+      },
+    });
 
     if (rowsCount > 0) {
       return res.status(200).send("Successful delete");
