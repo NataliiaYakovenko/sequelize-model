@@ -10,9 +10,9 @@ router.post("/phone/:modelId", PhoneController.createPhoneByModel);
 
 router.get("/phones", PhoneController.getAllPhones);
 
-router.get("/phones/all", PhoneController.getPhones);
-
 router.get("/phone/:id", PhoneController.getPhoneByPk);
+
+router.get("/phones/all", PhoneController.getPhones);
 
 router.get("/phones/:modelId", PhoneController.getPhonesByModel);
 

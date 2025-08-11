@@ -5,7 +5,7 @@ POST http://localhost:5000/api/phone HTTP/1.1
     "modelId": 4,
     "brand": "OnePlus",
     "model": "Nord CE",
-    "productionYear": "2021-06-10",
+    "productionYear": "2010-06-10",
     "ramSize": 6,
     "processor": "Qualcomm Snapdragon 750G",
     "screenSize": 6.43,

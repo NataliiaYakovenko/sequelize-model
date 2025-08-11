@@ -1,6 +1,13 @@
-PUT http://localhost:5000/api/phone/1 HTTP/1.1
+PUT http://localhost:5000/api/phone/17 HTTP/1.1
  Content-Type: application/json
 
   {
-  "ramSize": 5
+    "modelId": 4,
+    "brand": "OnePlus",
+    "model": "Nord CE",
+    "productionYear": "2010-06-10",
+    "ramSize": 6,
+    "processor": "Qualcomm Snapdragon 750G",
+    "screenSize": 7.43,
+    "isNfc": true
   }
