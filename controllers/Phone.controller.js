@@ -5,6 +5,9 @@ module.exports.createPhone = async (req, res, next) => {
   try {
     const { body } = req;
     const createdPhone = await Phone.create(body);
+    if (!createdPhone) {
+      return res.status(400).send("Something wrong");
+    }
     return res.status(201).send(createdPhone);
   } catch (error) {
     next(error);
@@ -15,6 +18,9 @@ module.exports.createPhoneByModel = async (req, res, next) => {
   try {
     const { body } = req;
     const createdPhone = await Phone.create(body);
+    if (!createdPhone) {
+      return res.status(400).send("Something wrong");
+    }
     return res.status(201).send(createdPhone);
   } catch (error) {
     next(error);
@@ -24,6 +30,9 @@ module.exports.createPhoneByModel = async (req, res, next) => {
 module.exports.getPhones = async (req, res, next) => {
   try {
     const resultArray = await Phone.findAll();
+    if (!resultArray) {
+      return res.status(404).send("Not found");
+    }
     return res.status(200).send(resultArray);
   } catch (error) {
     next(error);
@@ -36,7 +45,9 @@ module.exports.getPhoneByPk = async (req, res, next) => {
       params: { id },
     } = req;
     const resultArray = await Phone.findByPk(id);
-
+    if (!resultArray) {
+      return res.status(404).send("Not found");
+    }
     return res.status(200).send(resultArray);
   } catch (error) {
     next(error);
@@ -54,6 +65,9 @@ module.exports.getAllPhones = async (req, res, next) => {
       offset,
       order: [["productionYear", "ASC"]],
     });
+    if (!resultArray) {
+      return res.status(404).send("Not found");
+    }
     return res.status(200).send(resultArray);
   } catch (error) {
     next(error);
@@ -68,7 +82,9 @@ module.exports.getPhonesByModel = async (req, res, next) => {
         modelId: modelId,
       },
     });
-
+    if (!resultArray) {
+      return res.status(404).send("Not found");
+    }
     return res.status(200).send(resultArray);
   } catch (error) {
     next(error);
@@ -88,7 +104,9 @@ module.exports.getAllPhonesYear = async (req, res, next) => {
         },
       },
     });
-
+    if (!resultArray) {
+      return res.status(404).send("Not found");
+    }
     return res.status(200).send(resultArray);
   } catch (error) {
     next(error);
@@ -106,7 +124,9 @@ module.exports.getAllPhonesMore2020 = async (req, res, next) => {
         },
       },
     });
-
+    if (!resultArray) {
+      return res.status(404).send("Not found");
+    }
     return res.status(200).send(resultArray);
   } catch (error) {
     next(error);
@@ -123,7 +143,9 @@ module.exports.updatePhoneByPk = async (req, res, next) => {
       where: { id: id },
       returning: true,
     });
-
+    if (!updatedPhonesArray) {
+      return res.status(400).send("Something wrong");
+    }
     return res.status(200).send(updatedPhonesArray);
   } catch (error) {
     next(error);
@@ -147,7 +169,9 @@ module.exports.updatePhones2021 = async (req, res, next) => {
         },
       },
     });
-
+    if (!updatedPhonesArray) {
+      return res.status(400).send("Something wrong");
+    }
     return res.status(200).send(updatedPhonesArray);
   } catch (error) {
     next(error);
