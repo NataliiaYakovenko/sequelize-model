@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Phone } = require("../models/index");
+const { Phone, ModelPh } = require("../models/index");
 
 module.exports.createPhone = async (req, res, next) => {
   try {
@@ -76,20 +76,42 @@ module.exports.getAllPhones = async (req, res, next) => {
 
 module.exports.getPhonesByModel = async (req, res, next) => {
   try {
-    const { modelId } = req.params;
-    const resultArray = await Phone.findAll({
-      where: {
-        modelId: modelId,
-      },
+    const { title } = req.params;
+
+    const model = await ModelPh.findOne({
+      where: { title },
     });
-    if (!resultArray) {
-      return res.status(404).send("Not found");
+    if (!model) {
+      return res.status(404).send("Model not found");
     }
-    return res.status(200).send(resultArray);
+    const phones = await model.getPhones();
+    if (!phones) {
+      return res.status(404).send("No phones found for this model");
+    }
+    return res.status(200).send(phones);
   } catch (error) {
     next(error);
   }
 };
+
+//version 2
+// module.exports.getPhonesByModel = async (req, res, next) => {
+//   try {
+//     const { modelId } = req.params;
+//     const resultArray = await Phone.findAll({
+//       where: {
+//         modelId: modelId,
+//       },
+//     });
+//     if (!resultArray) {
+//       return res.status(404).send("Not found");
+//     }
+//     return res.status(200).send(resultArray);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
 
 module.exports.getAllPhonesYear = async (req, res, next) => {
   try {

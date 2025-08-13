@@ -14,7 +14,8 @@ router.get("/phone/:id", PhoneController.getPhoneByPk);
 
 router.get("/phones/all", PhoneController.getPhones);
 
-router.get("/phones/:modelId", PhoneController.getPhonesByModel);
+router.get("/phones/model/:title", PhoneController.getPhonesByModel);
+// router.get("/phones/:modelId", PhoneController.getPhonesByModel); //version 2
 
 router.get("/phones/year", PhoneController.getAllPhonesYear);
 
