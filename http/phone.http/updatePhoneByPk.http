@@ -5,7 +5,7 @@ PUT http://localhost:5000/api/phone/17 HTTP/1.1
     "modelId": 4,
     "brand": "OnePlus",
     "model": "Nord CE",
-    "productionYear": "2022-06-10",
+    "productionYear": "2025-06-10",
     "ramSize": 6,
     "processor": "Qualcomm Snapdragon 750G",
     "screenSize": 7.43,

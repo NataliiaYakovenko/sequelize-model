@@ -5,4 +5,4 @@ GET http://localhost:5000/api/phones/model/Pro HTTP/1.1
 
 
 //version 2
-GET http://localhost:5000/api/phones/1 HTTP/1.1
+# GET http://localhost:5000/api/phones/1 HTTP/1.1
