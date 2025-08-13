@@ -8,8 +8,6 @@ router.post("/phone", PhoneController.createPhone);
 
 router.post("/phone/:modelId", PhoneController.createPhoneByModel);
 
-router.post("/phone/:modelId", PhoneController.addPhoneByModel);
-
 router.get("/phones", PhoneController.getAllPhones);
 
 router.get("/phone/:id", PhoneController.getPhoneByPk);
@@ -26,6 +24,8 @@ router.get("/phones/more/:year", PhoneController.getAllPhonesMore2020);
 router.put("/phone/:id", PhoneController.updatePhoneByPk);
 
 router.put("/phones/year", PhoneController.updatePhones2021);
+
+router.put("/phone/:modelId", PhoneController.addPhoneByModel);
 
 router.delete("/phone/:id", PhoneController.deletePhoneByPk);
 
