@@ -1,0 +1,12 @@
+POST http://localhost:5000/api/phone/4
+Content-Type: application/json
+
+{
+  "brand": "Realme",
+  "model": "Nord CE",
+  "productionYear": "2019-09-09",
+  "ramSize": 6,
+  "processor": "Qualcomm Snapdragon 750G",
+  "screenSize": 6.43,
+  "isNfc": true
+}

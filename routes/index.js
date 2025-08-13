@@ -8,6 +8,8 @@ router.post("/phone", PhoneController.createPhone);
 
 router.post("/phone/:modelId", PhoneController.createPhoneByModel);
 
+router.post("/phone/:modelId", PhoneController.addPhoneByModel);
+
 router.get("/phones", PhoneController.getAllPhones);
 
 router.get("/phone/:id", PhoneController.getPhoneByPk);

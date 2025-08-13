@@ -45,6 +45,27 @@ module.exports.createPhoneByModel = async (req, res, next) => {
 //   }
 // };
 
+module.exports.addPhoneByModel = async (req, res, next) => {
+  try {
+    const { modelId } = req.params;
+    const { body } = req;
+
+    const modelPh = await ModelPh.findByPk(modelId);
+    if (!modelPh) {
+      return res.status(404).send("Model not found");
+    }
+
+    const createdPhone = await Phone.create(body);
+
+    await modelPh.addPhone(createdPhone);
+
+    return res.status(201).send(createdPhone);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports.getPhones = async (req, res, next) => {
   try {
     const resultArray = await Phone.findAll();
@@ -91,6 +112,8 @@ module.exports.getAllPhones = async (req, res, next) => {
     next(error);
   }
 };
+
+
 
 module.exports.getPhonesByModel = async (req, res, next) => {
   try {
