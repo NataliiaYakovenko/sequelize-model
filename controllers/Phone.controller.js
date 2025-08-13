@@ -31,7 +31,7 @@ module.exports.createPhoneByModel = async (req, res, next) => {
   }
 };
 
-//varios 2
+//version 2
 // module.exports.createPhoneByModel = async (req, res, next) => {
 //   try {
 //     const { body } = req;
