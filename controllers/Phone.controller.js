@@ -16,16 +16,34 @@ module.exports.createPhone = async (req, res, next) => {
 
 module.exports.createPhoneByModel = async (req, res, next) => {
   try {
+    const { modelId } = req.params;
     const { body } = req;
-    const createdPhone = await Phone.create(body);
-    if (!createdPhone) {
-      return res.status(400).send("Something wrong");
+
+    const modelPh = await ModelPh.findByPk(modelId);
+    if (!modelPh) {
+      return res.status(404).send("Model not found");
     }
+    const createdPhone = await modelPh.createPhone(body);
+
     return res.status(201).send(createdPhone);
   } catch (error) {
     next(error);
   }
 };
+
+//varios 2
+// module.exports.createPhoneByModel = async (req, res, next) => {
+//   try {
+//     const { body } = req;
+//     const createdPhone = await Phone.create(body);
+//     if (!createdPhone) {
+//       return res.status(400).send("Something wrong");
+//     }
+//     return res.status(201).send(createdPhone);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 module.exports.getPhones = async (req, res, next) => {
   try {
@@ -111,7 +129,6 @@ module.exports.getPhonesByModel = async (req, res, next) => {
 //     next(error);
 //   }
 // };
-
 
 module.exports.getAllPhonesYear = async (req, res, next) => {
   try {
